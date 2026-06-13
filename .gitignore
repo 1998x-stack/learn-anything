@@ -1,0 +1,24 @@
+# Claude Code local settings
+.claude/settings.local.json
+.claude/settings.json
+
+# macOS
+.DS_Store
+.AppleDouble
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS junk
+Thumbs.db

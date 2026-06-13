@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn Anything — A Learning System Powered by Claude Code</title>
+<style>
+  :root {
+    --bg: #faf8f5;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --accent: #d4532a;
+    --card-bg: #fff;
+    --border: #e8e4df;
+    --method-1: #e8742a;
+    --method-2: #3b6e8f;
+    --method-3: #b8383b;
+    --method-4: #c44a3a;
+    --method-5: #2c5a7a;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161412;
+      --text: #e8e4df;
+      --muted: #9b968f;
+      --accent: #f07242;
+      --card-bg: #1e1c1a;
+      --border: #2e2a26;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Iowan Old Style", "Georgia", "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  h1 span {
+    color: var(--accent);
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 2rem;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  }
+
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  .methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin: 4rem 0;
+  }
+
+  .method-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .method-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
+
+  .method-card .num {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .method-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+
+  .method-card .core {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+
+  .method-card .steps {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .pipeline-section {
+    margin: 4rem 0;
+  }
+
+  .pipeline-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+    font-size: 0.9rem;
+  }
+
+  .pipe-node {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    text-align: center;
+  }
+
+  .pipe-node .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .pipe-node .value {
+    font-weight: 600;
+  }
+
+  .pipe-arrow {
+    color: var(--muted);
+    font-size: 1.2rem;
+  }
+
+  .dirs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 3rem 0;
+  }
+
+  .dir-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+
+  .dir-card .icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .dir-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+
+  .dir-card p {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* Fade-in animation for cards */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .method-card {
+    animation: fadeIn 0.5s ease-out both;
+  }
+  .method-card:nth-child(1) { animation-delay: 0.05s; }
+  .method-card:nth-child(2) { animation-delay: 0.1s; }
+  .method-card:nth-child(3) { animation-delay: 0.15s; }
+  .method-card:nth-child(4) { animation-delay: 0.2s; }
+  .method-card:nth-child(5) { animation-delay: 0.25s; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Learn <span>Anything</span></h1>
+  <p class="subtitle">
+    A personal learning system that transforms raw notes into structured knowledge
+    — guided by the five most proven learning methods, powered by Claude Code.
+  </p>
+  <span class="badge">claude-code-skill</span>
+</header>
+
+<main>
+
+  <div class="methods-grid">
+
+    <div class="method-card">
+      <div class="num" style="color:var(--method-1)">Method 1</div>
+      <h3>Feynman Technique</h3>
+      <p class="core">"If you can't explain it simply, you don't understand it."</p>
+      <p class="steps">Choose topic → Teach a child → Identify gaps → Simplify & analogize</p>
+    </div>
+
+    <div class="method-card">
+      <div class="num" style="color:var(--method-2)">Method 2</div>
+      <h3>Simon Method</h3>
+      <p class="core">6 months to mastery through focused, deliberate practice.</p>
+      <p class="steps">Set target → Decompose into modules → Deep focus → Feedback → Integrate</p>
+    </div>
+
+    <div class="method-card">
+      <div class="num" style="color:var(--method-3)">Method 3</div>
+      <h3>SQ3R Reading</h3>
+      <p class="core">Active reading that makes every page count.</p>
+      <p class="steps">Survey (10%) → Question (10%) → Read (50%) → Recite (20%) → Review (10%)</p>
+    </div>
+
+    <div class="method-card">
+      <div class="num" style="color:var(--method-4)">Method 4</div>
+      <h3>Pomodoro Technique</h3>
+      <p class="core">25 minutes of focused work — beat procrastination, build momentum.</p>
+      <p class="steps">Plan task → 25min focus → 5min break → Repeat 4× → 15–30min long break</p>
+    </div>
+
+    <div class="method-card">
+      <div class="num" style="color:var(--method-5)">Method 5</div>
+      <h3>Cornell Notes (5R)</h3>
+      <p class="core">One notebook system for capture, comprehension, and review.</p>
+      <p class="steps">Record → Reduce → Recite → Reflect → Review</p>
+    </div>
+
+  </div>
+
+  <div class="pipeline-section">
+    <h2>How It Works</h2>
+    <div class="pipeline">
+      <div class="pipe-node">
+        <div class="label">Chat / raw/*.md</div>
+        <div class="value">Input</div>
+      </div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node">
+        <div class="label">five-learning-methods</div>
+        <div class="value">Process</div>
+      </div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node">
+        <div class="label">wiki/ + visualize/</div>
+        <div class="value">Output</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dirs">
+    <div class="dir-card">
+      <div class="icon">raw/</div>
+      <h4>Raw Input</h4>
+      <p>Drop markdown notes, articles, or study logs here. The skill reads and transforms them.</p>
+    </div>
+    <div class="dir-card">
+      <div class="icon">wiki/</div>
+      <h4>Obsidian Wiki</h4>
+      <p>Structured notes with YAML frontmatter, [[wikilinks]], and tags — ready for your vault.</p>
+    </div>
+    <div class="dir-card">
+      <div class="icon">visualize/</div>
+      <h4>HTML Visualizations</h4>
+      <p>Beautiful, self-contained pages generated on demand for any learning topic.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>
+    Powered by <a href="https://claude.ai/code">Claude Code</a> ·
+    <a href="https://github.com/1998x-stack/learn-anything">View on GitHub</a>
+  </p>
+</footer>
+
+</body>
+</html>
