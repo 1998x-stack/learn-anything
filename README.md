@@ -2,6 +2,8 @@
 
 A personal learning system powered by [Claude Code](https://claude.ai/code) skills. Transform raw notes into structured Obsidian wikis and beautiful HTML visualizations — guided by the world's five most proven learning methods.
 
+> 中文一句话：基于 Claude Code 技能的个人学习系统——在世界上最验证的五大学习法（费曼/西蒙/SQ3R/番茄/康奈尔）指导下，把原始笔记转化成结构化的 Obsidian wiki 与精美的 HTML 可视化，或直接给出方法支撑的深度回答。核心是一个渐进式披露的 `five-learning-methods` 技能（SKILL.md ~385 行 + references ~2450 行）。
+
 ## The Five Methods
 
 | Method | Core Idea | Best For |
