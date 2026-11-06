@@ -13,4 +13,4 @@
 - Risk & rollback: Low visual/accessibility-only change; rollback by reverting the feature-branch commits or eventual merge commit. Browser behavior still needs verification.
 - Follow-up: Run Python unittest in a clean checkout and test prefers-reduced-motion and Tab focus in a real browser before merging.
 - Commit: a7ab8729812f25ab6feeb5f99007d0ddda583b9e (CSS), a6fc85e4741d61e25ee24e1b3b3f2bad148e95f5 (tests); history commit pending
-- PR: pending
+- PR: https://github.com/1998x-stack/learn-anything/pull/1 (Draft; merge blocked by incomplete browser/Python validation)
