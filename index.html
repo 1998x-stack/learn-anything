@@ -17,6 +17,7 @@
     --method-3: #b8383b;
     --method-4: #c44a3a;
     --method-5: #2c5a7a;
+    --method-6: #7b5ea7;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -236,6 +237,7 @@
   .method-card:nth-child(3) { animation-delay: 0.15s; }
   .method-card:nth-child(4) { animation-delay: 0.2s; }
   .method-card:nth-child(5) { animation-delay: 0.25s; }
+  .method-card:nth-child(6) { animation-delay: 0.30s; }
 </style>
 </head>
 <body>
@@ -244,7 +246,7 @@
   <h1>Learn <span>Anything</span></h1>
   <p class="subtitle">
     A personal learning system that transforms raw notes into structured knowledge
-    — guided by the five most proven learning methods, powered by Claude Code.
+    — guided by six proven learning methods, powered by Claude Code.
   </p>
   <span class="badge">claude-code-skill</span>
 </header>
@@ -288,6 +290,13 @@
       <p class="steps">Record → Reduce → Recite → Reflect → Review</p>
     </div>
 
+    <div class="method-card">
+      <div class="num" style="color:var(--method-6)">Method 6</div>
+      <h3>Allegorical Insight</h3>
+      <p class="core">"Tell me a story and I'll remember; let me discover the answer and I'll understand."</p>
+      <p class="steps">Select concept → Design metaphor → Tell story → Conceal answer → Reveal → Map metaphors</p>
+    </div>
+
   </div>
 
   <div class="pipeline-section">
@@ -299,7 +308,7 @@
       </div>
       <span class="pipe-arrow">→</span>
       <div class="pipe-node">
-        <div class="label">five-learning-methods</div>
+        <div class="label">learning-methods</div>
         <div class="value">Process</div>
       </div>
       <span class="pipe-arrow">→</span>

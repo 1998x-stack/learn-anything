@@ -1,8 +1,8 @@
 # Learn Anything
 
-A personal learning system powered by [Claude Code](https://claude.ai/code) skills. Transform raw notes into structured Obsidian wikis and beautiful HTML visualizations — guided by the world's five most proven learning methods.
+A personal learning system powered by [Claude Code](https://claude.ai/code) skills. Transform raw notes into structured Obsidian wikis and beautiful HTML visualizations — guided by six proven learning methods.
 
-## The Five Methods
+## The Six Methods
 
 | Method | Core Idea | Best For |
 |--------|-----------|----------|
@@ -11,6 +11,7 @@ A personal learning system powered by [Claude Code](https://claude.ai/code) skil
 | **SQ3R** | Active reading — Survey, Question, Read, Recite, Review | Textbook and academic reading |
 | **Pomodoro Technique** | 25-minute focus units — beat procrastination | Sustained attention and time management |
 | **Cornell Notes (5R)** | Structured note system — Record, Reduce, Recite, Reflect, Review | Lecture notes and exam prep |
+| **Allegorical Insight** | Teach through indirect stories — delayed concept reveal creates "aha moments" | Abstract concepts, teaching, writing, cross-discipline communication |
 
 ## How It Works
 
@@ -38,7 +39,7 @@ Questions       →     + WebSearch        →   Direct answers
 learn-anything/
 ├── .claude/
 │   └── skills/
-│       └── five-learning-methods/    # The core skill
+│       └── learning-methods/         # The core skill
 │           ├── SKILL.md              # Main skill definition
 │           └── references/           # Deep reference content
 ├── raw/                              # Input: raw markdown notes
@@ -78,6 +79,11 @@ The skill activates automatically. Just start discussing learning methods — Cl
 
 → Claude invokes the frontend-design skill and saves the result to `visualize/`.
 
+**Teach through story:**
+> "Explain 'survivorship bias' using an allegorical story at graduate level"
+
+→ Claude writes a寓言 (allegory) that conceals the concept until near the end, then maps each story element back to the concept.
+
 **Research + document:**
 > "What's the latest research on spaced repetition? Make it a wiki page."
 
@@ -85,13 +91,14 @@ The skill activates automatically. Just start discussing learning methods — Cl
 
 ## Skill Architecture
 
-The `five-learning-methods` skill is a Claude Code skill that acts as an expert system for the five learning methods. It follows progressive disclosure:
+The `learning-methods` skill is a Claude Code skill that acts as an expert system for multiple proven learning methods. It follows progressive disclosure:
 
-- **SKILL.md** (~385 lines) — Workflow router + quick reference
-- **references/01-06** — Deep guides for each method + comparison (~2000 lines)
+- **SKILL.md** (~400 lines) — Workflow router + quick reference
+- **references/01-06** — Deep guides for the original five methods + comparison (~2000 lines)
 - **references/07-09** — Output specs, HTML guide, research workflow (~450 lines)
+- **references/10** — Allegorical Insight method guide (~420 lines)
 
-See `.claude/skills/five-learning-methods/SKILL.md` for the full skill definition.
+See `.claude/skills/learning-methods/SKILL.md` for the full skill definition.
 
 ## License
 
